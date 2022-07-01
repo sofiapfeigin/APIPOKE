@@ -1,3 +1,10 @@
+$(window).on('load', function () {
+    setTimeout(function () {
+        $(".loader-page").css({ visibility: "hidden", opacity: "0" })
+    }, 2000);
+
+});
+
 var mainApp = angular.module("mainApp", []);
 mainApp.controller('ControladorPokemon', function ($scope, $http) {
     $scope.PokemonAux = {};

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.png">
+    <title>API POKE</title>
+    <LINK REL="STYLESHEET" TYPE="TEXT/CSS" HREF="index.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid" ng-app='mainApp' ng-controller="ControladorPokemon">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar fixed-top navbar-expand-lg navbar-light "
+                    style="background-color:rgb(6, 145, 226) ;width: 100%;">
+
+                    <img src="pokemon.png" width="150" style="margin-top: 5px; margin-bottom: 5px;"
+                        class="rounded float-left" alt="">
+                    <input class="form-control form-control-sm mr-3"
+                        style="width: 200px; margin-top: 5px; margin-bottom: 5px;margin-left: 10px;" type="text"
+                        placeholder="Buscar" aria-label="Search" ng-model="Filtro.valor">
+
+                </nav>
+            </div>
+        </div>
+        <section style="padding-top: 100px;">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table id="tabla1" class="table table-bordered table-striped mb-0">
+                            <thead>
+                                <tr>
+                                   
+                                    <th scope="col">URL</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">TIPO</th>
+                                    <th scope="col">PESO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat='p in Pokemons | filter:Filtro.valor track by $index''>
+                                <td>
+                                    {{ p.url }}
+                                </td>
+                                <td>
+                                    {{ p.nombre }}
+                                </td>
+                                <td>
+                                    {{ p.tipo }}
+                                </td>
+                                <td>
+                                    {{ p.peso }}
+                                </td>
+                                <td>
+                                    <button class="btn btn-link" ng-click="verPokemon(p.nombre);"
+                                        style=" color:rgb(6, 145, 226); font-size: 12px;" id="ver">Ver
+                                        Pokemon</button>
+    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    
+            </div>
+        </div>
+    </section>
+        <div class="container">
+
+            <div class="modal fade" id="dialogo1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+    
+                        <!-- cabecera del diálogo -->
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title">{{nombre}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">X</button>
+                        </div>
+    
+                        <!-- cuerpo del diálogo -->
+                        <div class="modal-body">
+                            <b>Foto: </b>{{url}} <br>
+                            <b>Peso:</b> {{weight}} <br>
+                            <b>Tipo:</b> {{type}} <br>
+                            <b>Descripción:</b> {{description}} <br>
+                            <b>Lista de movimientos:</b> {{movimientos}} <br>
+                        </div>
+    
+                        <!-- pie del diálogo -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        
+    </div>
+  
+</body>
+
+</html>
